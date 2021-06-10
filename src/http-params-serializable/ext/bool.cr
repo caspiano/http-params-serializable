@@ -18,7 +18,8 @@ struct Bool
     case value.downcase
     when "1", "true"  then true
     when "0", "false" then false
-    else              raise TypeCastError.new
+    else
+      raise TypeCastError.new
     end
   end
 end
