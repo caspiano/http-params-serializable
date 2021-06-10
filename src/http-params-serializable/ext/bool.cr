@@ -11,11 +11,13 @@ struct Bool
     to_s
   end
 
-  # Parse `self` from an HTTP param, returning `true` on `"true"` and `false` on `"false"`.
+  # Parse `self` from an HTTP param, returning
+  # - `true` on `"true"` or `"1"`
+  # - `false` on `"false"` or `"0"`
   def self.from_http_param(value : String)
-    case value
-    when "true"  then true
-    when "false" then false
+    case value.downcase
+    when "1", "true"  then true
+    when "0", "false" then false
     else              raise TypeCastError.new
     end
   end
